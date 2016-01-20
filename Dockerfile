@@ -54,9 +54,8 @@ RUN set -ex \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
   done
 
-  ENV NPM_CONFIG_LOGLEVEL info
+ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 4.2.4
-#ENV NPM_VERSION 2.12.0
 
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
   && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
@@ -67,4 +66,8 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && npm install -g npm \
   && npm cache clear
 
+EXPOSE 4000
+
 WORKDIR /code
+
+CMD ["bash", "-c" , "mix deps.get && mix phoenix.server"]
