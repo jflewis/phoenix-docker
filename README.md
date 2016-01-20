@@ -10,3 +10,4 @@ Phoenix is a framework for building scalable web applications with realtime conn
 
     docker run -it --rm -v "$PWD":/code -w /phoenix marcelocg/phoenix mix phoenix.new /code/my_new_app
 
+a clone of marcelocg/phoenix-docker for personal use.
